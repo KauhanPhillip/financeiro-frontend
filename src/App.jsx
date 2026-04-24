@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 
 function App() {
+  alert("O React carregou!");
   const [transacoes, setTransacoes] = useState([]);
   // Estado para o formulário de cadastro
   const [form, setForm] = useState({ 
@@ -115,7 +116,7 @@ function App() {
                         </span>
                       </td>
                       <td className={`p-4 text-right font-mono font-bold ${t.tipo === 'ENTRADA' ? 'text-green-600' : 'text-red-600'}`}>
-                        {t.tipo === 'ENTRADA' ? '+' : '-'} R$ {t.valor.toFixed(2)}
+                        {t.tipo === 'ENTRADA' ? '+' : '-'} R$ {(Number(t.valor) || 0).toFixed(2)}
                       </td>
                     </tr>
                   ))
