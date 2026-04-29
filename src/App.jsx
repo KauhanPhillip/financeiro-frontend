@@ -48,12 +48,13 @@ function App() {
   };
 
   //Lógica de cálculos
+  // Usa expressão regular (RegEx) para aceitar SAIDA ou SAÍDA, ignorando maiúsculas/minúsculas
   const totalGastos = transacoes
-    .filter(t => t.tipo?.toUpperCase() === 'SAÍDA')
+    .filter(t => /SA[IÍ]DA/i.test(t.tipo)) 
     .reduce((acc, t) => acc + (Number(t.valor) || 0), 0);
 
   const totalEntradas = transacoes
-    .filter(t => t.tipo?.toUpperCase() === 'ENTRADA')
+    .filter(t => t.tipo?.toUpperCase().includes('ENTRADA'))
     .reduce((acc, t) => acc + (Number(t.valor) || 0), 0) + (Number(salario) || 0);
 
   const quantoSobrou = totalEntradas - totalGastos;
